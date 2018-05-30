@@ -1,8 +1,8 @@
 public class Tile{
   private int XCoor,YCoor;
   private boolean isMaze;
-  private int w = 50;
-  private int h = 50;
+  private int w = 60;
+  private int h = 60;
   
   public Tile(int x, int y, int w, int h, int c){
     XCoor = x;
@@ -30,7 +30,7 @@ public class Tile{
   
     void display() {
     stroke(0);
-    rect (XCoor + 100, YCoor + 100, w , h);
+    rect (XCoor, YCoor+50, w , h);
     println (XCoor);
     //Mover m = new Mover();
   } // method

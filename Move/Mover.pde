@@ -36,7 +36,7 @@ public class Mover {
   }
   
   public void checkOthers(ArrayList<Mover> others){
-    c = color(0,255, 0);
+    c = color(255,255, 255);
     for(Mover other : others){
       if(this != other){
        //check for collide

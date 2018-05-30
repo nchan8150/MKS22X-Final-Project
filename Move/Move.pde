@@ -1,4 +1,4 @@
-Tile [] boxes = new Tile[26]; 
+Tile [] boxes = new Tile[225]; 
 ArrayList<Mover> movers;
 
 public void setup() {
@@ -7,16 +7,18 @@ public void setup() {
   for (int i = 0; i < 10; i++) {
     movers.add(new Mover(1));
   }
-    int x = 10; // dist left  
+  
+  int x = 10; // dist left  
   int y = 10;  // dist top
   int k=0;
-  for (int i = 0; i < 5; i += 1) { 
-    for (int j = 0; j < 5; j += 1) { 
+  for (int i = 0; i < 10; i += 1) { 
+    for (int j = 0; j < 10; j += 1) { 
  
-      boxes[k] = new Tile(x+i*53, y+j*53, 50, 50, 50);
+      boxes[k] = new Tile(x+i*53, y+j*53, 50, 50, 255);
       k++;
     } // for
   } // for
+  
 }
 public void draw() {
   background(255);
@@ -26,7 +28,7 @@ public void draw() {
     m.display();
     m.update(movers);
   }
-   for (int i = 0; i < 25; i++) { 
+   for (int i = 0; i < 100; i++) { 
     //boxes[i].update(); 
     boxes[i].display();
     print (i);

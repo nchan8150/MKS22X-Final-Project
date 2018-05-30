@@ -2,11 +2,14 @@ Tile [] boxes = new Tile[225];
 ArrayList<Mover> movers;
 
 public void setup() {
-  size(900, 900);
+  size(900, 700);
   movers = new ArrayList<Mover>();
   for (int i = 0; i < 10; i++) {
     movers.add(new Mover(1));
   }
+  
+  text("Dynamic Maze Tower Defense", 10, 10);
+  fill(0, 0, 0);
   
   int x = 10; // dist left  
   int y = 10;  // dist top

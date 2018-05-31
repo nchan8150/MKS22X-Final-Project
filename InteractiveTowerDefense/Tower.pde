@@ -1,5 +1,5 @@
 public abstract class Tower extends Tile{
-  private String name;
+  private int type;
   private int cost;
   private int level;
   private int damage;

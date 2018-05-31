@@ -1,8 +1,8 @@
 public class Tile{
   private int XCoor,YCoor;
-  private boolean isMaze;
   private int w = 60;
   private int h = 60;
+  private int type;
   
   public Tile(int x, int y, int w, int h, int c){
     XCoor = x;
@@ -10,11 +10,18 @@ public class Tile{
     isMaze = false;
   }
   
-  public Tile(int x, int y, boolean filled){
+  public Tile(int x, int y, int t){
     XCoor = x;
     YCoor = y;
-    isMaze = filled;
+    type = t;
   }
+  
+  //0 = nothing
+  //1 = tower
+  public int getType() {
+    return type;
+  }
+  
   
   public int getX(){
     return XCoor;

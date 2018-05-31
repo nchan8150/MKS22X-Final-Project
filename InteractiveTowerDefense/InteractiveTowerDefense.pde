@@ -7,7 +7,7 @@ public void setup() {
   for (int i = 0; i < 10; i++) {
     movers.add(new Mover(1));
   }
-  
+
   text("Dynamic Maze Tower Defense", 10, 10);
   fill(0, 0, 0);
   

@@ -5,7 +5,12 @@ public abstract class Tower extends Tile{
   private int damage;
   private int range;
   
-  public Tower(String name) {
+  
+  //0 = basic 
+  //1 = freeze
+  //2 = cannon
+  //3 = sniper
+  public abstract Tower(int type){
     this.name = name;
     cost = 10;
     level = 1;
@@ -47,6 +52,5 @@ public abstract class Tower extends Tile{
     damage = newDamage;
   }
   
-  //public abstract 
   
 }

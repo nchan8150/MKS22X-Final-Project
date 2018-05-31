@@ -1,12 +1,21 @@
-/*public class Board{
+public class Board{
   private Tile[][] map;
-  private int Xsize;
-  private int Ysize;
+  private int Xsize = 12;
+  private int Ysize = 12;
  
- public Board{
-  map = new Tile[Xsize][Ysize]
-  Xsize = 10;
-  Ysize = 10;
+ public Board(){
+  map = new Tile[Xsize][Ysize];
+  //Xsize = 10; //dist left
+  //Ysize = 10; //dist top
+  
+  int k = 0; //initialize map
+  for (int i = 0; i < Xsize; i += 1) { 
+    for (int j = 0; j < Ysize; j += 1) { 
+ 
+      map[i][j] = new Tile(Xsize+i*53, Ysize+j*53, 50, 50, 255);
+      k++;
+    } // for
+  } // for
  }
  
  public int getXsize() {
@@ -25,4 +34,4 @@
    }
  }
  
-}*/
+}

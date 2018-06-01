@@ -7,7 +7,7 @@ public class Tile{
   public Tile(int x, int y, int w, int h, int c){
     XCoor = x;
     YCoor = y;
-    isMaze = false;
+    //isMaze = false;
   }
   
   public Tile(int x, int y, int t){
@@ -31,9 +31,9 @@ public class Tile{
     return YCoor;
   }
   
-  public boolean isMaze(){
-    return isMaze;
-  }
+ // public boolean isMaze(){
+  //  return isMaze;
+ // }
   
     void display() {
     stroke(0);

@@ -1,16 +1,27 @@
-public abstract class Tower extends Tile{
+public class Tower extends Tile{
   private int type;
   private int cost;
   private int level;
   private int damage;
   private int range;
-  private getTargetCritter()
+  private int xCoor;
+  private int yCoor;
+  private int upgradeCost;
+  private Enemy TargetEnemy();
   
   
   //0 = basic 
   //1 = freeze
   //2 = cannon
   //3 = sniper
+  public Tower(double xPos, double yPos){
+    xCoor = xPos;
+    yCoor = yPos;
+    //this.lastAttackTime = 0;
+    //angleOfRotation = 0;
+    //lastAttackTime = 0;
+  }
+  
   public abstract Tower(int type){
     this.name = name;
     cost = 10;

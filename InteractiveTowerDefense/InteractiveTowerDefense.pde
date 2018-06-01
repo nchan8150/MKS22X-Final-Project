@@ -1,5 +1,4 @@
-//Tile [] boxes = new Tile[225]; 
-Board b = new Board();
+Tile [] boxes = new Tile[225]; 
 ArrayList<Mover> movers;
 
 public void setup() {
@@ -9,9 +8,19 @@ public void setup() {
     movers.add(new Mover(1));
   }
 
-
   text("Dynamic Maze Tower Defense", 10, 10);
   fill(0, 0, 0);
+  
+  int x = 10; // dist left  
+  int y = 10;  // dist top
+  int k=0;
+  for (int i = 0; i < 10; i += 1) { 
+    for (int j = 0; j < 10; j += 1) { 
+ 
+      boxes[k] = new Tile(x+i*53, y+j*53, 50, 50, 255);
+      k++;
+    } // for
+  } // for
   
 }
 public void draw() {
@@ -22,10 +31,10 @@ public void draw() {
     m.display();
     m.update(movers);
   }
-  // for (int i = 0; i < 100; i++) { 
+   for (int i = 0; i < 100; i++) { 
     //boxes[i].update(); 
-    b.display();
-    //print (i);
+    boxes[i].display();
+    print (i);
     print ("  ");
- // } // for
+  } // for
 }

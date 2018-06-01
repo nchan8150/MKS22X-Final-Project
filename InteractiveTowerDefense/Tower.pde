@@ -1,9 +1,10 @@
-/*public abstract class Tower extends Tile{
+public abstract class Tower extends Tile{
   private int type;
   private int cost;
   private int level;
   private int damage;
   private int range;
+  private getTargetCritter()
   
   
   //0 = basic 
@@ -53,4 +54,4 @@
   }
   
   
-}*/
+}

@@ -48,6 +48,7 @@ public class Tower extends Tile{
   
   public int setLevel(int newLevel) {
     level = newLevel;
+  }
   
   public int getRange() {
     return range;
@@ -55,6 +56,7 @@ public class Tower extends Tile{
   
   public int setRange(int newRange){
     range = newRange;
+  }
   
   public int getDamage() {
     return Damage;

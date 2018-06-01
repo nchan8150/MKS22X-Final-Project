@@ -20,6 +20,9 @@ public class Enemy{
   }
   
   public int[][] getValidMoves(){
-    //...
+    //... letsa do this
+    // in BOard!! and get
+    // inpiration from 
+    //Frontier Maze Solver
   }
 }

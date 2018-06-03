@@ -19,10 +19,21 @@ public class Enemy{
     YCoor = y;
   }
   
-  /*public int[][] getValidMoves(){
-    //... letsa do this
-    // in BOard!! and get
-    // inpiration from 
-    //Frontier Maze Solver
-  }*/
+  public Location getMove(Location[] validMoves){
+    int maxPriority = 0;
+    Location maxLoc = null;
+    for(Location loc : validMoes){
+       if(loc.getPriority() > maxPriority){
+          maxPriority = loc.getPriority();
+          maxLoc = loc;
+       }
+    }
+    return maxLoc;
+  }
+  
+  public void move(Location loc){
+    XCoor = loc.getX();
+    YCoor = loc.getY();
+  }
+    
 }

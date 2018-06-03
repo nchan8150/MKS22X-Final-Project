@@ -2,9 +2,10 @@ import java.io.*;
 import java.util.*;
 
 public class Board{
-  Tile start = map[0][0];
-  Tile end = map[Xsize-1][Ysize-1];
-  private Tile[][] map;
+  Location start = new Location(0,0,null,0,0);
+  Location end = new Location(5,5,null,0,0);
+  private Tile[][] grid;
+  private Location[][] maze;
   private int Xsize = 12;
   private int Ysize = 12;
   private int[][]directions = {{1,0}, {0,-1}, {-1,0}, {0,1}};
@@ -32,13 +33,13 @@ public class Board{
    return Ysize;
  }
  
-/*  public TIle[] getNeighbors(Tile L, boolean isAStar){
-        Tile[] list = new Tile[4];
+ public Location[] getNeighbors(Location L, boolean isAStar){
+        Location[] list = new Location[4];
         for(int i = 0; i < 4; i++){
             for(int[]dir : directions){
                 int x = L.getX() + dir[0];
                 int y = L.getY() + dir[1];
-                if(x >= 0 && x <= map.length-1 && y >= 0 && y <= map[0].length-1 &&(map[x][y] == ' ' ||map[x][y] == 'E')) {
+                if(x >= 0 && x <= maze.length-1 && y >= 0 && y <= maze[0].length-1 &&(maze[x][y] == ' ' ||maze[x][y] == 'E')) {
                     int priority =  Math.abs(x - end.getX()) + Math.abs(y - end.getY());
                     if(isAStar){
                         priority += L.getPriority();
@@ -48,12 +49,19 @@ public class Board{
             }
 
         }  return list;
-  }*/
+  }
+  
+    public Location getStart(){
+    return start;
+  }
+  public Location getEnd(){
+    return end;
+  }
  
  void display() {
    for(int x = 0; x < Xsize; x++) {
      for (int y = 0; y < Ysize; y++) {
-       map[x][y].display();
+       grid[x][y].display();
      }
    }
  }

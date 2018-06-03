@@ -19,10 +19,10 @@ public class Enemy{
     YCoor = y;
   }
   
-  public int[][] getValidMoves(){
+  /*public int[][] getValidMoves(){
     //... letsa do this
     // in BOard!! and get
     // inpiration from 
     //Frontier Maze Solver
-  }
+  }*/
 }

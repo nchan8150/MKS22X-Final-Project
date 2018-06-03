@@ -32,7 +32,7 @@ public class Board{
    return Ysize;
  }
  
-  public TIle[] getNeighbors(Tile L, boolean isAStar){
+/*  public TIle[] getNeighbors(Tile L, boolean isAStar){
         Tile[] list = new Tile[4];
         for(int i = 0; i < 4; i++){
             for(int[]dir : directions){
@@ -48,7 +48,7 @@ public class Board{
             }
 
         }  return list;
-  }
+  }*/
  
  void display() {
    for(int x = 0; x < Xsize; x++) {

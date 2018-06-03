@@ -1,5 +1,7 @@
 //Tile [] boxes = new Tile[225]; 
 Board b = new Board();
+Enemy e = new Enemy();
+Location[] locs = b.getNeighbors(
 ArrayList<Mover> movers;
 
 public void setup() {
@@ -18,14 +20,18 @@ public void draw() {
   background(255);
   fill(0);
   text(frameRate, 20, 20);
-  for (Mover m : movers) {
+  /*for (Mover m : movers) {
     m.display();
     m.update(movers);
-  }
+  }*/
   // for (int i = 0; i < 100; i++) { 
     //boxes[i].update(); 
     b.display();
     //print (i);
     print ("  ");
  // } // for
+ 
+   e.display();
+   e.move(1,1);
+   //e.display();
 }

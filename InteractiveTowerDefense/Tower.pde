@@ -1,4 +1,4 @@
-public class Tower extends Tile{
+/*public class Tower extends Tile{
   private int type;
   private int cost;
   private int level;
@@ -67,4 +67,4 @@ public class Tower extends Tile{
   }
   
   
-}
+}*/

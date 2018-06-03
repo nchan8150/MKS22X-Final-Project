@@ -5,13 +5,13 @@ public class Board{
   Location start = new Location(0,0,null,0,0);
   Location end = new Location(5,5,null,0,0);
   private Tile[][] grid;
-  private Location[][] maze;
+  private char[][] maze;
   private int Xsize = 12;
   private int Ysize = 12;
   private int[][]directions = {{1,0}, {0,-1}, {-1,0}, {0,1}};
  
  public Board(){
-  map = new Tile[Xsize][Ysize];
+  grid = new Tile[Xsize][Ysize];
   //Xsize = 10; //dist left
   //Ysize = 10; //dist top
   
@@ -19,7 +19,7 @@ public class Board{
   for (int i = 0; i < Xsize; i += 1) { 
     for (int j = 0; j < Ysize; j += 1) { 
  
-      map[i][j] = new Tile(Xsize+i*53, Ysize+j*53, 50, 50, 255);
+      grid[i][j] = new Tile(Xsize+i*53, Ysize+j*53, 50, 50, 255);
       k++;
     } // for
   } // for

@@ -1,4 +1,4 @@
-public class SniperTower extends Tower {
+/*public class SniperTower extends Tower {
   public SniperTower(double x, double y){
     super(x,y);
     this.cost = newBuyingCost;
@@ -19,4 +19,4 @@ public class SniperTower extends Tower {
   private static int newPower = 20;
 
    
-}
+}*/

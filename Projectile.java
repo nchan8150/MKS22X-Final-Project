@@ -16,4 +16,29 @@ public abstract class Projectile extends Entity {
 	public Turret getSource() {
 		return source;
 	}
+	
+	@Override
+	public int interactWith(Entity entity) {
+		if (entity instanceof Enemy) {
+			((Enemy) entity).damage(getSource().getDamage());
+			kill();
+			return (entity.isAlive()) ? 0 : 1;
+		}
+		return 0;
+	}
+	
+	@Override
+	public void setX(double x) {
+		if (x < 0 || x > Map.COLUMNS)
+			kill();
+		else
+			super.setX(x);
+	}
+	@Override
+	public void setY(double y) {
+		if (y < 0 || y > Map.ROWS)
+			kill();
+		else
+			super.setY(y);
+	}
 }

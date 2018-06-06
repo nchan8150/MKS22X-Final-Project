@@ -1,6 +1,6 @@
 
 # Tower Defenders
-**Team SUN, YOU DON'T STAND A CHAN-CE**
+**Team "SUN, YOU DON'T STAND A CHAN-CE"**
 
 ## How to Run
 ```
@@ -27,6 +27,6 @@ java TowerDefenseMain
 ## Acknowledgments 
 Thank you Mr. K and the Internet for making this all possible!
 
-## Team SUN, YOU DON'T STAND A CHAN-CE
+## Team "SUN, YOU DON'T STAND A CHAN-CE"
 - Nicholas Chan, pd 09
 - Jerry Sun, pd 09

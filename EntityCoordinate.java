@@ -35,6 +35,21 @@ public class EntityCoordinate{
 		return Math.atan(deltaY / deltaX) + Math.PI;
 	}
 	
+	public double distanceTo(EntityCoordinate coord) {
+		double deltaX = coord.getX() - this.getX();
+		double deltaY = coord.getY() - this.getY();
+		return Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+	}
+	public EntityCoordinate closestTo(List<EntityCoordinate> coords) {
+		if (coords.size() <= 0)
+			return null;
+		EntityCoordinate closest = coords.get(0);
+		for (EntityCoordinate coord : coords)
+			if (this.distanceTo(coord) < this.distanceTo(closest))
+				closest = coord;
+		return closest;
+	}
+	
 	public String toString() {
 		return "EntityCoordinate: {x: " + getX() + ", y: " + getY() + "}";
 	}

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +25,9 @@ public abstract class Entity implements Tickable{
 		this.color = color;
 		this.velocity = new VelocityVector(0, 0);
 	}
+         
 	
-		public Color getColor() {
+	public Color getColor() {
 		return color;
 	}
 	public void setColor(Color color) {

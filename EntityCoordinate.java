@@ -50,6 +50,16 @@ public class EntityCoordinate{
 		return closest;
 	}
 	
+	public Entity closestEntity(List<Entity> entities) {
+		if (entities.size() <= 0)
+			return null;
+		Entity closest = entities.get(0);
+		for (Entity entity : entities)
+			if (this.distanceTo(entity.getPosition()) < this.distanceTo(closest.getPosition()))
+				closest = entity;
+		return closest;
+	}
+	
 	public String toString() {
 		return "EntityCoordinate: {x: " + getX() + ", y: " + getY() + "}";
 	}

@@ -56,6 +56,20 @@ public class Enemy extends Entity {
 		return health;
 	}
 	
+	public boolean approachingJunction() {
+		double error = 0.05;
+		if (direction == Direction.NORTH && Math.abs(getY() - Math.ceil(getY())) < error)
+			return true;
+		if (direction == Direction.SOUTH && Math.abs(getY() - Math.floor(getY())) < error)
+			return true;
+		if (direction == Direction.EAST && Math.abs(getX() - Math.ceil(getX())) < error)
+			return true;
+		if (direction == Direction.WEST && Math.abs(getX() - Math.floor(getX())) < error)
+			return true;
+		return false;
+		
+	}
+	
 	@Override
 	public int interactWith(Entity entity) {
 		// TODO Auto-generated method stub

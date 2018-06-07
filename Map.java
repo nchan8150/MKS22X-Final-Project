@@ -34,7 +34,7 @@ public class Map {
 	public Turret getTurretAt(SquareCoordinate position) {
 		return getSquare(position).getTurret();
 	}
-		public boolean withinBounds(SquareCoordinate position) {
+	public boolean withinBounds(SquareCoordinate position) {
 		if (position.getX() < 0 || position.getX() > COLUMNS - 1)
 			return false;
 		if (position.getY() < 0 || position.getY() > ROWS - 1)

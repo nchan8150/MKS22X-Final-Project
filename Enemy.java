@@ -22,6 +22,36 @@ public class Enemy extends Entity {
 		this.health = health;
 	}
 	
+	public void damage() {
+		damage(1);
+	}
+	public void damage(int damage) {
+		health -= damage;
+		if (health <= 0)
+			kill();
+	}
+	public void tick() {	
+		double moveDistance = ((double) speed) * 0.01;
+		
+		if (approachingJunction()) {
+			snapToCoordinate();
+			
+			if (getY() > 4)
+				direction = Direction.SOUTH;
+			else if (getY() < 4)
+				direction = Direction.NORTH;
+			else if (getX() < 5)
+				direction = Direction.EAST;
+			else if (getX() > 5)
+				direction = Direction.WEST;
+			else
+				direction = Direction.SOUTH;
+			
+			setVelocityVector(new VelocityVector(moveDistance, direction));
+		}
+		move();
+	}
+	
 	public int getHealth() {
 		return health;
 	}

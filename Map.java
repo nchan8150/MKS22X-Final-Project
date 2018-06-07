@@ -21,4 +21,17 @@ public class Map {
 	public Square[][] getSquares() {
 		return squares;
 	}
+	public Square getSquare(SquareCoordinate position) {
+		return squares[position.getY()][position.getX()];
+	}
+	public void setTurret(Turret turret) {
+		getSquare(turret.getPosition()).setTurret(turret);
+	}
+	public Turret removeTurret(Turret turret) {
+		getSquare(turret.getPosition()).setTurret(null);
+		return turret;
+	}
+	public Turret getTurretAt(SquareCoordinate position) {
+		return getSquare(position).getTurret();
+	}
 }

@@ -26,3 +26,28 @@ public class TowerDefenseView extends JFrame {
 	private ArrayList<JRadioButton> storeButtons = new ArrayList<JRadioButton>();
 	private long purchaseErrorMessageShown;
 	private SquareCoordinate selectedSquare;
+
+	public TowerDefenseView() {
+
+		gamePanel = new GamePanel();
+		controlPanel = new ControlPanel();
+		gamePanel.setPreferredSize(new Dimension(WIDTH - 260, HEIGHT));
+		controlPanel.setPreferredSize(new Dimension(260, HEIGHT));
+
+		this.add(gamePanel, BorderLayout.WEST);
+		this.add(controlPanel, BorderLayout.EAST);
+
+		this.setSize(1280, 720);
+		this.setTitle("Tower Defense");
+		this.setResizable(false);
+		this.setVisible(true);
+		
+		this.requestFocus();
+	}
+
+	public void setState(TowerDefenseModel model) {
+		this.model = model;
+		if (model.getCurrentTick() - purchaseErrorMessageShown > 4000 / model.TICK_FREQUENCY)
+			clearPurchaseErrorMessage();
+	}
+

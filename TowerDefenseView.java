@@ -156,4 +156,69 @@ public class TowerDefenseView extends JFrame {
 		}
 	}
 
+	private JFrame getFrame() {
+		return this;
+	}
+
+	private class ControlPanel extends JPanel {
+
+		private JLabel pointsLabel;
+		private JLabel scoreLabel;
+		private JLabel baseLabel;
+		private JLabel purchaseErrorLabel;
+
+		public ControlPanel() {
+			this.setLayout(new GridLayout(3, 1));
+
+			JPanel pointsPanel = new JPanel();
+			pointsPanel.setLayout(new GridLayout(3, 1));
+			scoreLabel = new JLabel("Score");
+			pointsPanel.add(scoreLabel);
+			pointsLabel = new JLabel("Points");
+			pointsPanel.add(pointsLabel);
+			purchaseErrorLabel = new JLabel("");
+			purchaseErrorLabel.setForeground(Color.RED);
+			pointsPanel.add(purchaseErrorLabel);
+			this.add(pointsPanel);
+
+			baseLabel = new JLabel("Base Health");
+			this.add(baseLabel);
+			this.add(new StorePanel());
+		}
+
+		public void paintComponent(Graphics g) {
+			if (model == null)
+				return;
+
+			scoreLabel.setText("Score: " + model.getScore());
+			pointsLabel.setText("Points: " + model.getPoints());
+			if (model.getMap() != null && model.getMap().getBase() != null)
+				baseLabel.setText("Base Health: " + model.getMap().getBase().getHealth());
+		}
+
+		public void setPurchaseErrorMessage(String message) {
+			purchaseErrorLabel.setText(message);
+		}
+	}
+
+	private class StorePanel extends JPanel {
+		public StorePanel() {
+			String[] itemsForSale = new String[] { "[10 points] Basic Turret", "[20 points] Circle Turret",
+					"[30 points] Aim Turret", "[50 points] Homing Turret", "[40 points] Reduce cooldown",
+					"[60 points] Damage upgrade", "[20% value] Sell" };
+
+			this.setLayout(new GridLayout(itemsForSale.length + 10, 1));
+			this.add(new JLabel("Store"));
+
+			ButtonGroup buttons = new ButtonGroup();
+			for (String buttonLabel : itemsForSale) {
+				JRadioButton button = new JRadioButton(buttonLabel);
+				buttons.add(button);
+				this.add(button);
+				storeButtons.add(button);
+			}
+		}
+	}
+}
+
 

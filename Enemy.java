@@ -70,6 +70,21 @@ public class Enemy extends Entity {
 		
 	}
 	
+	public static EntityCoordinate getRandomValidStartingCoordinate() {
+		EntityCoordinate coord;
+		double side = Direction.getRandomDirection();
+		if (side == Direction.NORTH) {
+			coord = new EntityCoordinate(Math.floor(Math.random() * Map.COLUMNS), 0);
+		} else if (side == Direction.SOUTH) {
+			coord = new EntityCoordinate(Math.floor(Math.random() * Map.COLUMNS), Map.ROWS);
+		} else if (side == Direction.WEST) {
+			coord = new EntityCoordinate(0, Math.floor(Math.random() * Map.ROWS));
+		} else {
+			coord = new EntityCoordinate(Map.COLUMNS, Math.floor(Math.random() * Map.ROWS));
+		}
+		return coord;
+	}
+	
 	@Override
 	public int interactWith(Entity entity) {
 		// TODO Auto-generated method stub

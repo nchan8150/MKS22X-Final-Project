@@ -93,3 +93,67 @@ public class TowerDefenseView extends JFrame {
 			if (model == null)
 				return;
 
+			Square[][] squares = model.getMap().getSquares();
+			int width = 100;
+			for (int row = 0; row < squares.length; row++) {
+				for (int col = 0; col < squares[row].length; col++) {
+					g.setColor(Color.LIGHT_GRAY);
+					g.drawRect(col * width + 10, row * width + 10, width, width);
+
+					if (squares[row][col].getTurret() != null) {
+						Turret turret = squares[row][col].getTurret();
+						if (turret instanceof BasicTurret)
+							g.setColor(Color.GRAY);
+						else if (turret instanceof CircleTurret)
+							g.setColor(Color.BLUE);
+						else if (turret instanceof AimTurret)
+							g.setColor(Color.YELLOW);
+						else if (turret instanceof HomingTurret)
+							g.setColor(Color.PINK);
+						else
+							g.setColor(Color.BLACK);
+						
+						int turretWidth = 20;
+						
+						g.fillOval(turret.getX() * 100 + 50 + 10 - turretWidth / 2, turret.getY() * 100 + 50 + 10 - turretWidth / 2, turretWidth, turretWidth);
+						g.setColor(Color.BLACK);
+					}
+				}
+			}
+
+			// Draw entities
+			for (Entity entity : model.getEntities()) {
+				g.setColor(entity.getColor());
+				int x = (int) (entity.getX() * width + 10 - entity.getSize() / 2);
+				int y = (int) (entity.getY() * width + 10 - entity.getSize() / 2);
+				g.fillOval(x, y, entity.getSize(), entity.getSize());
+			}
+
+			// Draw selected box
+			if (selectedSquare != null) {
+				g.setColor(Color.BLACK);
+				g.drawRect(selectedSquare.getX() * width + 10, selectedSquare.getY() * width + 10, width, width);
+			}
+
+			// Draw base
+			int baseWidth = 30;
+			if (model.getMap().getBase().getPercentDamaged() > 80)
+				g.setColor(Color.RED);
+			else if (model.getMap().getBase().getPercentDamaged() > 30)
+				g.setColor(Color.ORANGE);
+			else if (model.getMap().getBase().getPercentDamaged() > 0)
+				g.setColor(Color.YELLOW);
+			else
+				g.setColor(Color.GREEN);
+			g.fillRect(500 + 10 - baseWidth / 2, 350 + 10 - baseWidth / 2, baseWidth, baseWidth);
+
+			if (model.isGameOver()) {
+				g.setColor(Color.BLACK);
+				g.setFont(new Font("Helvetica", 100, 100));
+				g.drawString("Game over!", 100, 100);
+				g.drawString("R to restart", 100, 200);
+			}
+		}
+	}
+
+

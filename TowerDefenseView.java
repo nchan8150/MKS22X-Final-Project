@@ -51,3 +51,45 @@ public class TowerDefenseView extends JFrame {
 			clearPurchaseErrorMessage();
 	}
 
+	public void setSelectedSquare(SquareCoordinate selectedSquare) {
+		this.selectedSquare = selectedSquare;
+	}
+
+	public List<JRadioButton> getStoreButtons() {
+		return storeButtons;
+	}
+
+	public void setPurchaseErrorMessage(String message) {
+		controlPanel.setPurchaseErrorMessage(message);
+		purchaseErrorMessageShown = model.getCurrentTick();
+	}
+
+	public void clearPurchaseErrorMessage() {
+		setPurchaseErrorMessage("");
+	}
+
+	public JTextField getNameTextField() {
+		return gamePanel.getNameTextField();
+	}
+	
+	private class GamePanel extends JPanel {
+		
+		private JTextField name = new JTextField("Name");
+		
+		public GamePanel() {
+			this.setLayout(null);
+			this.add(name);
+			name.setVisible(false);
+			name.setSize(500, 100);
+			name.setFont(new Font("Helvetica", 0, 80));
+			name.setLocation(100, 600);
+		}
+		
+		public JTextField getNameTextField() {
+			return name;
+		}
+		
+		public void paintComponent(Graphics g) {
+			if (model == null)
+				return;
+

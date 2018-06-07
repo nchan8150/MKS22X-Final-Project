@@ -1,14 +1,7 @@
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Enemy extends Entity {
 
-	private EntityCoordinate position;
-	private VelocityVector velocity;
-	private int size;
-	private Color color;
-	private boolean alive = true;
 	private int damage = 0;
 	private double direction = Direction.getRandomDirection();
 	private int speed;
@@ -28,4 +21,20 @@ public class Enemy extends Entity {
 		this.speed = speed;
 		this.health = health;
 	}
+	
+	public int getHealth() {
+		return health;
+	}
+	
+	@Override
+	public int interactWith(Entity entity) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public int getSize() {
+		return super.getSize() + 3 * (health - 1);
+	}
+	
 }

@@ -5,6 +5,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.net.ssl.SSLContext;
+import javax.swing.JRadioButton;
+
 public class TowerDefenseController implements StateObserver, MouseListener, ActionListener, KeyListener {
 
 	private TowerDefenseModel model;
@@ -85,7 +88,7 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 
 	}
 	
-		@Override
+	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		selectedButton = ((JRadioButton) arg0.getSource());
 		view.requestFocus();
@@ -101,6 +104,23 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	private Purchasable getSelectedItem(SquareCoordinate position) {
+		if (selectedButton == null)
+			return null;
+		switch (selectedButton.getText()) {
+		case "[10 points] Basic Turret":
+			return (new BasicTurret(position));
+		case "[20 points] Circle Turret":
+			return (new CircleTurret(position));
+		case "[30 points] Aim Turret":
+			return (new AimTurret(position));
+		case "[50 points] Homing Turret":
+			return (new HomingTurret(position));
+		default:
+			return null;
+		}
 	}
 	
 	@Override

@@ -97,6 +97,16 @@ public abstract class Entity implements Tickable{
 	public VelocityVector getVelocity() {
 		return velocity;
 	}
+	
+	public void move() {
+		moveX(Math.cos(velocity.getAngle()) * velocity.getSpeed());
+		moveY(Math.sin(velocity.getAngle()) * velocity.getSpeed());
+	}
+	public void move(VelocityVector velocity) {
+		setVelocityVector(velocity);
+		move();
+	}
+	
 	protected void setVelocityVector(VelocityVector velocity) {
 		this.velocity = velocity;
 	}

@@ -33,3 +33,55 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 			
 		});
 	}
+	
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		if (selectedButton == null)
+			return;
+		if (model.isGameOver())
+			return;
+
+		int x = arg0.getX();
+		int y = arg0.getY();
+		// account for 10px border
+		x -= 10;
+		y -= 10;
+		// each square is 100px side length
+		x /= 100;
+		y /= 100;
+
+		if (x > Map.COLUMNS)
+			return;
+		if (y > Map.ROWS)
+			return;
+
+		SquareCoordinate position = new SquareCoordinate(x, y);
+		attemptPurchase(position);
+		
+		view.requestFocus();
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+

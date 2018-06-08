@@ -155,10 +155,41 @@ public abstract class Entity implements Tickable{
 		return output;
 	}
 	
+	public int interactWithIntersections(List<Entity> entities) {
+		List<Entity> intersections = this.intersects(entities);
+		return interactWith(intersections);
+	}
+	public int interactWith(List<Entity> entities) {
+		int points = 0;
+		for (int i = 0; i < entities.size(); i++) {
+			points += interactWith(entities.get(i));
+		}
+		return points;
+	}
+	
 	public boolean isAlive() {
 		return alive;
 	}
 	public boolean isDead() {
 		return !isAlive();
+	}
+	
+	public double interceptAngle(double speed, EntityCoordinate coord) {		
+		double vty = this.getVelocity().getSpeed() * Math.sin(this.getVelocity().getAngle());
+		double vtx = this.getVelocity().getSpeed() * Math.cos(this.getVelocity().getAngle());
+		double vp = speed;
+		double xot = this.getX();
+		double xop = coord.getX();
+		double yot = this.getY();
+		double yop = coord.getY();
+		
+		// Formulas found using SageMath query: solve([xot+vtx*t==xop+vpx*t,yot+vty*t==yop+vpy*t,vpx^2+vpy^2==vp^2],vpx,vpy,t)
+		// I set up this system of parametric equations and had SageMath (a computer algebra system) solve it
+		double vpx = (vtx*vty*yop - vtx*vty*yot + (vp*vp - vty*vty)*xop - (vp*vp - vty*vty)*xot - Math.sqrt(vp*vp*xop*xop - vty*vty*xop*xop - 2*vp*vp*xop*xot + 2*vty*vty*xop*xot + vp*vp*xot*xot - vty*vty*xot*xot + 2*vtx*vty*xop*yop - 2*vtx*vty*xot*yop + vp*vp*yop*yop - vtx*vtx*yop*yop - 2*vtx*vty*xop*yot + 2*vtx*vty*xot*yot - 2*vp*vp*yop*yot + 2*vtx*vtx*yop*yot + vp*vp*yot*yot - vtx*vtx*yot*yot)*vtx)/(vtx*xop - vtx*xot + vty*yop - vty*yot - Math.sqrt(vp*vp*xop*xop - vty*vty*xop*xop - 2*vp*vp*xop*xot + 2*vty*vty*xop*xot + vp*vp*xot*xot - vty*vty*xot*xot + 2*vtx*vty*xop*yop - 2*vtx*vty*xot*yop + vp*vp*yop*yop - vtx*vtx*yop*yop - 2*vtx*vty*xop*yot + 2*vtx*vty*xot*yot - 2*vp*vp*yop*yot + 2*vtx*vtx*yop*yot + vp*vp*yot*yot - vtx*vtx*yot*yot));
+		double vpy = (vtx*vty*xop - vtx*vty*xot + (vp*vp - vtx*vtx)*yop - (vp*vp - vtx*vtx)*yot - Math.sqrt(vp*vp*xop*xop - vty*vty*xop*xop - 2*vp*vp*xop*xot + 2*vty*vty*xop*xot + vp*vp*xot*xot - vty*vty*xot*xot + 2*vtx*vty*xop*yop - 2*vtx*vty*xot*yop + vp*vp*yop*yop - vtx*vtx*yop*yop - 2*vtx*vty*xop*yot + 2*vtx*vty*xot*yot - 2*vp*vp*yop*yot + 2*vtx*vtx*yop*yot + vp*vp*yot*yot - vtx*vtx*yot*yot)*vty)/(vtx*xop - vtx*xot + vty*yop - vty*yot - Math.sqrt(vp*vp*xop*xop - vty*vty*xop*xop - 2*vp*vp*xop*xot + 2*vty*vty*xop*xot + vp*vp*xot*xot - vty*vty*xot*xot + 2*vtx*vty*xop*yop - 2*vtx*vty*xot*yop + vp*vp*yop*yop - vtx*vtx*yop*yop - 2*vtx*vty*xop*yot + 2*vtx*vty*xot*yot - 2*vp*vp*yop*yot + 2*vtx*vtx*yop*yot + vp*vp*yot*yot - vtx*vtx*yot*yot));
+		
+		if (vpx > 0)
+			return Math.atan(vpy / vpx);
+		return Math.atan(vpy / vpx) + Math.PI;
 	}
 }

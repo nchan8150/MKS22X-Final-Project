@@ -130,6 +130,31 @@ public abstract class Entity implements Tickable{
 		return Math.abs(getX() - 5) < error && Math.abs(getY() - 3.5) < error;
 	}
 	
+	public boolean intersects(Entity entity) {
+		if (this == entity)
+			return false;
+		if (entity.isDead() || this.isDead())
+			return false;
+		if (Math.abs(this.getX() - entity.getX()) > ((double) entity.getSize()) / 100)
+			return false;
+		if (Math.abs(entity.getX() - this.getX()) > ((double) this.getSize()) / 100)
+			return false;
+		if (Math.abs(this.getY() - entity.getY()) > ((double) this.getSize()) / 100)
+			return false;
+		if (Math.abs(entity.getY() - this.getY()) > ((double) entity.getSize()) / 100)
+			return false;
+		
+		return true;
+	}
+	public List<Entity> intersects(List<Entity> entities) {
+		ArrayList<Entity> output = new ArrayList<Entity>();
+		for (Entity entity : entities) {
+			if (this.intersects(entity))
+				output.add(entity);
+		}
+		return output;
+	}
+	
 	public boolean isAlive() {
 		return alive;
 	}

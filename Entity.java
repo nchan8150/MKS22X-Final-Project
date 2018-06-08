@@ -77,6 +77,23 @@ public abstract class Entity implements Tickable{
 		snapToY();
 	}
 	
+	protected void moveX(double distance) {
+		setX(position.getX() + distance);
+	}
+	protected void moveY(double distance) {
+		setY(position.getY() + distance);
+	}
+	protected void move(double distance, double direction) {
+		if (direction == Direction.NORTH)
+			moveY(distance);
+		else if (direction == Direction.SOUTH)
+			moveY(-1 * distance);
+		else if (direction == Direction.EAST)
+			moveX(distance);
+		else if (direction == Direction.WEST)
+			moveX(-1 * distance);
+	}
+	
 	public VelocityVector getVelocity() {
 		return velocity;
 	}

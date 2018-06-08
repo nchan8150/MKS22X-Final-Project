@@ -25,6 +25,9 @@ public abstract class Entity implements Tickable{
 		this.color = color;
 		this.velocity = new VelocityVector(0, 0);
 	}
+	
+	public abstract int interactWith(Entity entity);
+		
 	public void kill() {
 		alive = false;
 	}
@@ -61,6 +64,17 @@ public abstract class Entity implements Tickable{
 	}
 	public int getSize() {
 		return size;
+	}
+	
+	protected void snapToX() {
+		setX(Math.round(position.getX()));
+	}
+	protected void snapToY() {
+		setY(Math.round(position.getY()));
+	}
+	protected void snapToCoordinate() {
+		snapToX();
+		snapToY();
 	}
 	
 	public VelocityVector getVelocity() {

@@ -123,6 +123,18 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 		}
 	}
 	
+	private void attemptPurchase(SquareCoordinate position) {
+		try {
+			if (getSelectedItem(position) != null)
+				model.purchase(getSelectedItem(position));
+			else
+				model.sell(position);
+			view.clearPurchaseErrorMessage();
+		} catch (PurchaseException e) {
+			view.setPurchaseErrorMessage(e.getMessage());
+		}
+	}
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();

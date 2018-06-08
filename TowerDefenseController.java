@@ -84,4 +84,37 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 		// TODO Auto-generated method stub
 
 	}
+	
+		@Override
+	public void actionPerformed(ActionEvent arg0) {
+		selectedButton = ((JRadioButton) arg0.getSource());
+		view.requestFocus();
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int code = e.getKeyCode();
+
+		if (e.getKeyChar() == 'm')
+			model.cheat();
+		if (e.getKeyChar() == ' ')
+			model.togglePause();
+		if (e.getKeyChar() == 'r')
+			model.restart();
+		if (e.getKeyChar() == 'a')
+			model.advanceLevel();
+	}
+}
 

@@ -110,6 +110,26 @@ public abstract class Entity implements Tickable{
 	protected void setVelocityVector(VelocityVector velocity) {
 		this.velocity = velocity;
 	}
+	
+	public boolean onEdgeX() {
+		return position.getX() == 0 || position.getX() == Map.COLUMNS + 1;
+	}
+	public boolean onEdgeY() {
+		return position.getY() == 0 || position.getY() == Map.ROWS + 1;
+	}
+	public boolean onEdge() {
+		return onEdgeX() || onEdgeY();
+	}
+	public boolean onCorner() {
+		return onEdgeX() && onEdgeY();
+	}
+	public boolean atBase() {
+		return atBase(0.1);
+	}
+	public boolean atBase(double error) {
+		return Math.abs(getX() - 5) < error && Math.abs(getY() - 3.5) < error;
+	}
+	
 	public boolean isAlive() {
 		return alive;
 	}

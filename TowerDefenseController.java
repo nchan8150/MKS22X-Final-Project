@@ -147,6 +147,30 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 			model.restart();
 		if (e.getKeyChar() == 'a')
 			model.advanceLevel();
+		
+		try {
+			int n = Integer.parseInt(Character.toString(e.getKeyChar()));
+			if (n > 0 && n <= view.getStoreButtons().size()) {
+				view.getStoreButtons().get(n - 1).setSelected(true);
+				selectedButton = view.getStoreButtons().get(n - 1);
+			}
+		} catch (NumberFormatException ex) {
+		}
+		
+		if (model.isGameOver())
+			return;
+
+		// up = 38, down = 40, left = 37, right = 39
+		if (code == 38)
+			selectedSquare = selectedSquare.decY();
+		if (code == 40)
+			selectedSquare = selectedSquare.incY();
+		if (code == 37)
+			selectedSquare = selectedSquare.decX();
+		if (code == 39)
+			selectedSquare = selectedSquare.incX();
+		if (code == 10)
+			attemptPurchase(selectedSquare);
 	}
 }
 

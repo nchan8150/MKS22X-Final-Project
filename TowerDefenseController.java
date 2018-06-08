@@ -37,6 +37,17 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 		});
 	}
 	
+	public void nameTyped(ActionEvent e) {
+		return;
+	}
+	
+	@Override
+	public void stateChanged() {
+		view.setState(model);
+		view.setSelectedSquare(selectedSquare);
+		view.repaint();
+	}
+	
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		if (selectedButton == null)
@@ -139,8 +150,6 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
 
-		if (e.getKeyChar() == 'm')
-			model.cheat();
 		if (e.getKeyChar() == ' ')
 			model.togglePause();
 		if (e.getKeyChar() == 'r')

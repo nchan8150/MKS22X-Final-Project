@@ -38,7 +38,7 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 	}
 	
 	public void nameTyped(ActionEvent e) {
-		return;
+		model.placeScore(new Highscore(e.getActionCommand(), model.getScore()));
 	}
 	
 	@Override
@@ -117,7 +117,7 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 
 	}
 	
-	private Purchasable getSelectedItem(SquareCoordinate position) {
+private Purchasable getSelectedItem(SquareCoordinate position) {
 		if (selectedButton == null)
 			return null;
 		switch (selectedButton.getText()) {
@@ -129,6 +129,10 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 			return (new AimTurret(position));
 		case "[50 points] Homing Turret":
 			return (new HomingTurret(position));
+		case "[40 points] Reduce cooldown":
+			return (new CooldownUpgrade(position));
+		case "[60 points] Damage upgrade":
+			return (new DamageUpgrade(position));
 		default:
 			return null;
 		}

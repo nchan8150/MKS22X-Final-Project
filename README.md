@@ -22,7 +22,7 @@ java TowerDefenseMain
 1. Select a tower and click on a blank tile to place it.
 2. Build more towers to protect your base from the enemies!
 3. Upgrade towers or sell them to buy better ones.
-4. When the enemies defeat you, enter your name into the score board.
+4. When the enemies defeat you, enter your name into the score board (but only if you beat a previous highscore).
 5. Challenge your friends or your mom to beat your highscore.
 6. Play again to beat your friends and gain more clout!
 
@@ -31,7 +31,8 @@ java TowerDefenseMain
 - **Numbers**: select buttons.
 - **Space**: pause game.
 - **R**: restart game.
-- **A**: speed up game.
+- **A**: advance the next wave of enemies manually.
+- **M**: cheat; gain 1000 points BUT unable to record highscore.
 
 ## Development Log
 ### Before the Demo

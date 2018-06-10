@@ -5,6 +5,7 @@ public abstract class Turret implements Purchasable {
 
 	private SquareCoordinate position;
 	private int cooldown;
+	private List<Upgrade> upgrades = new ArrayList<Upgrade>();
 
 	public Turret(SquareCoordinate position) {
 		this(position, 1);
@@ -32,11 +33,30 @@ public abstract class Turret implements Purchasable {
 	}
 
 	public int getDamage() {
-		return 1;
+		return 1 + numberOfDamageUpgrades();
 	}
 	
 	public int getCooldown() {
-		return cooldown;
+		return Math.max(cooldown - numberOfCooldownUpgrades() * 10, 1);
+	}
+	
+	private int numberOfTypeUpgrade(Class<? extends Upgrade> clazz) {
+		int count = 0;
+		
+		for (Upgrade upgrade : upgrades)
+			if (upgrade.getClass() == clazz)
+				count++;
+				
+		
+		return count;
+	}
+	
+	public int numberOfDamageUpgrades() {
+		return numberOfTypeUpgrade(DamageUpgrade.class);
+	}
+	
+	public int numberOfCooldownUpgrades() {
+		return numberOfTypeUpgrade(CooldownUpgrade.class);
 	}
 
 	public SquareCoordinate getPosition() {
@@ -44,8 +64,23 @@ public abstract class Turret implements Purchasable {
 	}
 
 	public int getValue() {
-		return getBasePrice();
+		return getBasePrice() + getUpgradesValue();
 	}
 
-
+	public boolean addUpgrade(Upgrade upgrade) throws PurchaseException {
+		if (upgrade instanceof CooldownUpgrade && numberOfCooldownUpgrades() >= 4)
+			throw new PurchaseException("Max cooldown");
+		if (upgrade instanceof DamageUpgrade && numberOfDamageUpgrades() >= 4)
+			throw new PurchaseException("Max damage");
+		return upgrades.add(upgrade);
+	}
+	
+	private int getUpgradesValue() {
+		int value = 0;
+		
+		for (Upgrade upgrade : upgrades)
+			value += upgrade.getValue();
+		
+		return value;
+	}
 }

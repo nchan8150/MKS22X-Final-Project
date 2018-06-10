@@ -227,7 +227,7 @@ public class TowerDefenseView extends JFrame {
 		public StorePanel() {
 			String[] itemsForSale = new String[] { "[10 points] Basic Turret", "[20 points] Circle Turret",
 					"[30 points] Aim Turret", "[50 points] Homing Turret", "[40 points] Reduce cooldown",
-					"[60 points] Damage upgrade", "[20% value] Sell" };
+					"[60 points] Damage upgrade", "[90% value] Sell" };
 
 			this.setLayout(new GridLayout(itemsForSale.length + 10, 1));
 			this.add(new JLabel("Store"));

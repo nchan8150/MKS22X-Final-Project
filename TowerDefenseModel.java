@@ -267,7 +267,7 @@ public class TowerDefenseModel implements ActionListener {
 
 		int value = map.getTurretAt(position).getValue();
 		removeTurret(map.getTurretAt(position));
-		points += value * 0.2;
+		points += value * 0.9;
 
 		return true;
 	}

@@ -25,10 +25,10 @@ java TowerDefenseMain
 6. Play again to beat your friends and gain more clout!
 
 ## Controls
-- *Arrows* and *Enter* or mouse: select and place towers.
-- *Space*: pause game.
-- *R*: restart game.
-- *A*: speed up game.
+- **Arrows** and **Enter** or mouse: select and place towers.
+- **Space**: pause game.
+- **R**: restart game.
+- **A**: speed up game.
 
 ## Development Log
 ### Before the Demo

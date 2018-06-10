@@ -92,7 +92,8 @@ public class TowerDefenseView extends JFrame {
 		public void paintComponent(Graphics g) {
 			if (model == null)
 				return;
-
+		
+			// Draw grid
 			Square[][] squares = model.getMap().getSquares();
 			int width = 100;
 			for (int row = 0; row < squares.length; row++) {
@@ -113,10 +114,16 @@ public class TowerDefenseView extends JFrame {
 						else
 							g.setColor(Color.BLACK);
 						
-						int turretWidth = 20;
+						int turretWidth = 20 + turret.numberOfDamageUpgrades() * 6;
 						
 						g.fillOval(turret.getX() * 100 + 50 + 10 - turretWidth / 2, turret.getY() * 100 + 50 + 10 - turretWidth / 2, turretWidth, turretWidth);
 						g.setColor(Color.BLACK);
+
+						if (turret.numberOfCooldownUpgrades() > 0) {
+							g.setFont(new Font("Helvetica", 0, 16));
+							g.drawString(Integer.toHexString(turret.numberOfCooldownUpgrades()),
+									turret.getX() * 100 + 50 + 6, turret.getY() * 100 + 50 + 16);
+						}
 					}
 				}
 			}
@@ -152,10 +159,25 @@ public class TowerDefenseView extends JFrame {
 				g.setFont(new Font("Helvetica", 100, 100));
 				g.drawString("Game over!", 100, 100);
 				g.drawString("R to restart", 100, 200);
+				
+				g.setFont(new Font("Helvetica", 0, 40));
+				g.drawString("Highscores: ", 100, 400);
+				for (int i = 0; i < model.getHighScores().size(); i++) {
+					g.drawString(model.getHighScores().get(i).toFormattedString(), 100, 460 + i * 40);
+				}
+				
+				if (model.isHighScore() && !name.isVisible()) {
+					name.setVisible(true);
+					name.requestFocus();
+					name.selectAll();
+				} else if (!model.isHighScore()) {
+					name.setVisible(false);
+					getFrame().requestFocus();
+				}
 			}
 		}
 	}
-
+	
 	private JFrame getFrame() {
 		return this;
 	}
@@ -220,5 +242,3 @@ public class TowerDefenseView extends JFrame {
 		}
 	}
 }
-
-

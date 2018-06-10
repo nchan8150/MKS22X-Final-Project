@@ -26,6 +26,7 @@ java TowerDefenseMain
 
 ## Controls
 - **Arrows** and **Enter** or mouse: select and place towers.
+- **Numbers**: select buttons.
 - **Space**: pause game.
 - **R**: restart game.
 - **A**: speed up game.

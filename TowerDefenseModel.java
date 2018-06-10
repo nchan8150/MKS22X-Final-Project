@@ -87,6 +87,21 @@ public class TowerDefenseModel implements ActionListener {
 		level++;
 	}
 	
+	private void ensureHighscoreFile() {
+		if (Files.isRegularFile(highscorePath))
+			return;
+		
+		try {
+			BufferedWriter bw = Files.newBufferedWriter(highscorePath);
+			bw.write("empty:0,empty:0,empty:0");
+			bw.flush();
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+	
 	
 	private void tick() {
 		currentTick++;
@@ -116,6 +131,42 @@ public class TowerDefenseModel implements ActionListener {
 	private void gameOver() {
 		gameOver = true;
 		pause();
+	}
+	
+	public void placeScore(Highscore score) {
+		placeScore(score, getHighScores());
+	}
+	
+	private void placeScore(Highscore score, List<Highscore> scores) {
+		for (int i = 0; i < scores.size(); i++) {
+			if (scores.get(i).getScore() < score.getScore()) {
+				scores.add(i, score);
+				i++;
+				break;
+			}
+		}
+		scores.remove(scores.size() - 1);
+		
+		BufferedWriter bw;
+		try {
+			bw = Files.newBufferedWriter(highscorePath);
+			
+			String scoresString = "";
+			for (Highscore highscore : scores) {
+				scoresString += highscore.toString() + ",";
+			}
+			
+			scoresString = scoresString.substring(0, scoresString.length() - 1);
+			
+			bw.write(scoresString);
+			bw.flush();
+			bw.close();
+			
+			highscoreRecorded = true;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void updateLevel() {

@@ -17,6 +17,7 @@ public class TowerDefenseModel implements ActionListener {
 
 	private long currentTick;
 	private int points;
+	private boolean highscoreRecorded;
 	private int totalKills;
 	private int totalKillsWhenLevelChanged;
 	private int level = 1;
@@ -28,20 +29,26 @@ public class TowerDefenseModel implements ActionListener {
 	private Map map = new Map();
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-	private ArrayList<Turret> turrets = new ArrayList<Turret>();	
+	private ArrayList<Turret> turrets = new ArrayList<Turret>();
+	private Path highscorePath = FileSystems.getDefault().getPath("TowerDefenseHighscores.txt");	
 
 	
 	public boolean isGameOver() {
 		return gameOver;
+	}
+	
+	public boolean isHighscoreRecorded() {
+		return highscoreRecorded;
 	}
 
 	public void restart() {
 		start();
 	}
 	public void start() {
-	
+		ensureHighscoreFile();
 		
 		points = 50;
+		highscoreRecorded = false;
 		
 		totalKills = 0;
 		currentTick = 0;
@@ -69,6 +76,11 @@ public class TowerDefenseModel implements ActionListener {
 		enemies.clear();
 		turrets.clear();
 		map = new Map();
+	}
+	
+	public void cheat() {
+		highscoreRecorded = true;
+		points += 1000;
 	}
 	
 	public void advanceLevel() {

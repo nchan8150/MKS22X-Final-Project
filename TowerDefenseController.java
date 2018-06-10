@@ -154,6 +154,8 @@ private Purchasable getSelectedItem(SquareCoordinate position) {
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
 
+		if (e.getKeyChar() == 'm')
+			model.cheat();
 		if (e.getKeyChar() == ' ')
 			model.togglePause();
 		if (e.getKeyChar() == 'r')

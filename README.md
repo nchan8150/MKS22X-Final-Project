@@ -2,6 +2,8 @@
 # Tower Defense
 **Team "SUN, YOU DON'T STAND A CHAN-CE"**
 
+**Protect your base using various towers to defeat the waves of enemies! Upgrade towers or buy stronger ones to increase your score and set a highscore!**
+
 ## How to Run
 ```
 git clone https://github.com/nchan8150/MKS22X-Final-Project.git

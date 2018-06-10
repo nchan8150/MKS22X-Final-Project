@@ -29,18 +29,16 @@ public class TowerDefenseModel implements ActionListener {
 	private Map map = new Map();
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-	private ArrayList<Turret> turrets = new ArrayList<Turret>();
-	private Path highscorePath = FileSystems.getDefault().getPath("TowerDefenseHighscores.txt");	
+	private ArrayList<Turret> turrets = new ArrayList<Turret>();	
+	private Path highscorePath = FileSystems.getDefault().getPath("TowerDefenseHighscores.txt");
 
 	
 	public boolean isGameOver() {
 		return gameOver;
 	}
-	
 	public boolean isHighscoreRecorded() {
 		return highscoreRecorded;
 	}
-
 	public void restart() {
 		start();
 	}
@@ -49,7 +47,6 @@ public class TowerDefenseModel implements ActionListener {
 		
 		points = 50;
 		highscoreRecorded = false;
-		
 		totalKills = 0;
 		currentTick = 0;
 		totalKillsWhenLevelChanged = 0;
@@ -77,7 +74,7 @@ public class TowerDefenseModel implements ActionListener {
 		turrets.clear();
 		map = new Map();
 	}
-	
+
 	public void cheat() {
 		highscoreRecorded = true;
 		points += 1000;
@@ -101,7 +98,6 @@ public class TowerDefenseModel implements ActionListener {
 			e.printStackTrace();
 		}	
 	}
-	
 	
 	private void tick() {
 		currentTick++;
@@ -168,6 +164,41 @@ public class TowerDefenseModel implements ActionListener {
 			e.printStackTrace();
 		}
 	}
+	
+	public boolean isHighScore() {
+		return isHighScore(totalKills, getHighScores()) && !highscoreRecorded;
+	}
+	
+	private boolean isHighScore(int score, List<Highscore> scores) {
+		int minScore = scores.get(scores.size() - 1).getScore();
+		return (score > minScore);
+	}
+	
+	public List<Highscore> getHighScores() {
+		List<Highscore> scores = new ArrayList<Highscore>();
+		
+		try {
+			BufferedReader br = Files.newBufferedReader(highscorePath);
+			String text = "";
+			while (true) {
+				String line = br.readLine();
+				if (line == null)
+					break;
+				else
+					text += line;
+			}
+			br.close();
+			
+			String[] words = text.split(",");
+			for (int i = 0; i < words.length; i++) {
+				scores.add(new Highscore(words[i]));
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return scores;
+	}
 
 	private void updateLevel() {
 		if (totalKills - totalKillsWhenLevelChanged > 30) {
@@ -217,7 +248,14 @@ public class TowerDefenseModel implements ActionListener {
 					return;
 				}
 			}
-
+			if (item instanceof Upgrade) {
+				if (map.positionEmpty(item.getPosition()))
+					throw new PurchaseException("No turret to upgrade");
+				if (map.getTurretAt(item.getPosition()).addUpgrade((Upgrade) item)) {
+					points -= item.getValue();
+					return;
+				}
+			}
 			throw new PurchaseException();
 		}
 		throw new PurchaseException("Not enough funds");

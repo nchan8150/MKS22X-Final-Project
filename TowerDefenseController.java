@@ -36,7 +36,7 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 			
 		});
 	}
-	
+
 	public void nameTyped(ActionEvent e) {
 		model.placeScore(new Highscore(e.getActionCommand(), model.getScore()));
 	}
@@ -47,7 +47,7 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 		view.setSelectedSquare(selectedSquare);
 		view.repaint();
 	}
-	
+
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		if (selectedButton == null)
@@ -98,7 +98,7 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		selectedButton = ((JRadioButton) arg0.getSource());
@@ -116,8 +116,8 @@ public class TowerDefenseController implements StateObserver, MouseListener, Act
 		// TODO Auto-generated method stub
 
 	}
-	
-private Purchasable getSelectedItem(SquareCoordinate position) {
+
+	private Purchasable getSelectedItem(SquareCoordinate position) {
 		if (selectedButton == null)
 			return null;
 		switch (selectedButton.getText()) {
@@ -149,7 +149,7 @@ private Purchasable getSelectedItem(SquareCoordinate position) {
 			view.setPurchaseErrorMessage(e.getMessage());
 		}
 	}
-	
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
@@ -188,4 +188,3 @@ private Purchasable getSelectedItem(SquareCoordinate position) {
 			attemptPurchase(selectedSquare);
 	}
 }
-
